@@ -40,7 +40,7 @@
                     <li class="active"><a href="#section-hero">Home</a></li>
                     <li><a href="#section-about">About</a></li>
                     <li><a href="#section-works">Work</a></li>
-                    <li><a href="#section-contact">Contact</a></li>
+                    <li><a href="#footer">Contact</a></li>
                 </ul>
             </div>
             <!--/.navbar-collapse -->
@@ -574,7 +574,7 @@
                                 <br />
                             </h5>
 
-                            <span class="author">&mdash; Chris Hawkins, Middleweight Developer at <a href="http://www.ridgeway.net/">Ridgeway Digital</a></span>
+                            <span class="author">&mdash; Chris Hawkins, Developer at <a href="http://www.ridgeway.net/">Ridgeway Digital</a></span>
                         </div>
 
                     </div>
@@ -587,57 +587,7 @@
 
     <!-- contact -->
     <section id="section-contact" class="section appear clearfix">
-        <div class="container">
-
-            <div class="row mar-bot40">
-                <div class="col-md-offset-3 col-md-6">
-                    <div class="section-header">
-                        <h2 class="section-heading animated" data-animation="bounceInUp">Contact</h2>
-                        <div id="visitorDistance"></div>
-                        <p>
-                            Be kind to your carrier pigeon and use the form below to send your message.
-                        </p>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="cform" id="contact-form">
-                        <form role="form" id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" runat="server" name="name" class="form-control" id="name" placeholder="Your Name" />
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Your Email</label>
-                                <input type="email" runat="server" class="form-control" name="email" id="email" placeholder="Your Email" />
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input type="text" runat="server" class="form-control" name="subject" id="subject" placeholder="Subject" />
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Describe your project</label>
-                                <textarea class="form-control" runat="server" id="message" name="message" rows="5"></textarea>
-                                <div class="validation"></div>
-                            </div>
-                            <button id="sendEmail" runat="server" type="submit" class="btn btn-theme pull-right">SEND</button>
-
-                            <button type="reset" class="btn">Cancel</button>
-                            <div id="sendmessage">
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-                <!-- ./span12 -->
-            </div>
-
-        </div>
+        
     </section>
     <!-- map -->
     <section id="section-map" class="clearfix">
@@ -686,43 +636,8 @@
     <script src="js/jquery.localscroll-1.2.7-min.js"></script>
     <script src="js/stellar.js"></script>
     <script src="js/jquery.appear.js"></script>
-    <script src="Scripts/jquery.validate.js"></script>
-    <script src="js/formValidation.js"></script>
     <script src="js/main.js"></script>
     <script src="js/timeline.js"></script>
-    <script type="text/javascript">
-
-        $(function () {
-            $("[id*=sendEmail]").click(function () {
-                var obj = {};
-                obj.name = $.trim($("[id*=name]").val());
-                obj.from = $.trim($("[id*=email]").val());
-                obj.sbj = $.trim($("[id*=subject]").val());
-                obj.msgBody = $.trim($("textarea#message").val());
-                $.ajax({
-                    type: "POST",
-                    url: "Default.aspx/SendParameters",
-                    data: JSON.stringify(obj),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: OnSuccess,
-                    failure: function (r) {
-                        alert(r.d);
-                    }
-                });
-                return false;
-            });
-        });
-        function OnSuccess(r) {
-            $("#sendmessage").hide().html(r.d).fadeIn(1000, function () {
-                $(this).delay(3000).fadeOut(1000);
-            });
-            $("#contactForm").validate().resetForm();//removes error class on name elements and clear history
-            $("#contactForm").each(function () { //clears form fields
-                this.reset();
-            });
-        }
-    </script>
     <script type="text/javascript">
         (function detectIE() {
             var ua = window.navigator.userAgent;
@@ -751,13 +666,10 @@
                 // other browser
                 return false;
         })();
-
     </script>
     <script type="text/javascript">
-        // When the window has finished loading create our google map below
         google.maps.event.addDomListener(window, 'load', init);
         function init() {
-            // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
             var mapOptions = {
                 zoom: 11,
                 draggable: false,
@@ -774,38 +686,5 @@
             var map = new google.maps.Map(mapElement, mapOptions);
         }
     </script>
-    <script type="application/javascript">
-        $(document).ready(function () {
-            $.getJSON("http://www.telize.com/geoip?callback=?",
-                function (json) {
-                    var visitorLat = json.latitude;
-                    var visitorLon = json.longitude;
-                    var lat2 = 51.7502;//Oxford
-                    var lon2 = -1.2674;
-                    var unit = 'K';
-                    var result = distance(visitorLat, visitorLon, lat2, lon2, unit).toPrecision(5);
-                    var displayDistance = document.getElementById('visitorDistance');
-                    displayDistance.innerHTML = "We are <span class='txt-bold' style='color:#79CDC0;'>" + result + " Km</span> apart.";
-                }
-            );
-        });
-        function distance(lat1, lon1, lat2, lon2, unit) {
-            var radlat1 = Math.PI * lat1 / 180
-            var radlat2 = Math.PI * lat2 / 180
-            var radlon1 = Math.PI * lon1 / 180
-            var radlon2 = Math.PI * lon2 / 180
-            var theta = lon1 - lon2
-            var radtheta = Math.PI * theta / 180
-            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-            dist = Math.acos(dist)
-            dist = dist * 180 / Math.PI
-            dist = dist * 60 * 1.1515
-            if (unit == 'K') { dist = dist * 1.609344 }
-            if (unit == 'N') { dist = dist * 0.8684 }
-            return dist
-
-        };
-    </script>
-
 </body>
 </html>
