@@ -114,7 +114,7 @@ a:hover {
 }
 
 /*==========================================================================
-  Misc & Adjust 
+  Misc & Adjust
  ========================================================================== */
 
 label.error {
@@ -202,6 +202,10 @@ label.error {
 
 .align-center {
     text-align: center;
+}
+
+.align-center svg {
+    margin-bottom: 20px;
 }
 
 /* ---- padding ---- */
