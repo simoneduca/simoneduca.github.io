@@ -437,7 +437,6 @@ section.section {
 
 #parallax1 {
     background-image: url(../img/parallax/desk.jpg);
-    /*url(../img/parallax/img1.jpg);*/
 }
 
 #parallax2 {
@@ -445,11 +444,11 @@ section.section {
 }
 
 #testimonial1 {
-    background-image: url(../img/parallax/scopello.jpg);
+    background-image: url(../img/parallax/corals.png);
 }
 
 #testimonial2 {
-    background-image: url(../img/parallax/img1.jpg);
+    background-image: url(../img/parallax/crystals.png);
 }
 /*===========================
   --- Header & menu ----
@@ -857,16 +856,16 @@ nav#filter {
 }
 
 .testimonial i {
-    color: #fff;
+    color: #777;
 }
 
 .testimonial span.author {
-    color: #fff;
+    color: #555;
     font-weight: 700;
 }
 
 .testimonial h5 {
-    color: #fff;
+    color: #555;
     font-size: 18px;
     line-height: 1.8em;
 }
