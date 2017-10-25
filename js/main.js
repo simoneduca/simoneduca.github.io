@@ -141,7 +141,6 @@
  * which will be the case when invoked by jQuery after an event
  */
 	function scroll_if_anchor(href) {
-		console.log('scroll_if_anchor(href)', href)
 		href = typeof(href) == "string" ? href : $(this).attr("href");
 
 		// You could easily calculate this dynamically if you prefer
